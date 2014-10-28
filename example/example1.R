@@ -3,6 +3,8 @@
 # Task 3: run $ Rscript example1.R --n_feature_selection_to=110astext=as.character
 # Task 4: run $ Rscript example1.R --phenotype=NULL=as.null
 
+source("../src/readInput.R")
+
 evalParseText <- function(text) {
   eval(parse(text=text))
 }

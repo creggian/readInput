@@ -1,16 +1,16 @@
 Parameter parser for R scripts
 ==============================
 
-The goal is to easily parse parameters when launching R script using `Rscript` command. Example:
+The goal is to easily parse parameters and provide an "help" text message when launching R script using `Rscript` command. Example:
 
 `Rscript myscript.R --arg1=param1 --arg2=param2`
 
 What to do
 ----------
 
-* create a data.frame with default arguments (and little bit more)
-* merge default with custom parameters
-* retrieve the final values
+1. create a data.frame with default arguments (and little bit more)
+2. merge default with custom parameters
+3. retrieve the final values
 
 How to do that?
 ---------------
@@ -45,7 +45,7 @@ For the preprocessing function you can use both built-in and user-defined functi
 
 `argsL <- readInput(default_args, commandArgs(TRUE))`
 
-`argsL` is a list (one item per each parameter) resulting from merging default and custom parameters. One remarks: if there is one custome parameter not listed in the default ones, the script will generate an error and quit.
+`argsL` is a list (one item per each parameter) resulting from merging default and custom parameters. One remark: if there is one custom parameter not listed in the default ones, the script will generate an error and quit.
 
 *Final remark*: right now it is mandatory to provide at least one parameter, otherwise the help text will be shown. 
 
