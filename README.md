@@ -46,3 +46,16 @@ For the preprocessing function you can use both built-in and user-defined functi
 `argsL <- readInput(default_args, commandArgs(TRUE))`
 
 `argsL` is a list (one item per each parameter) resulting from merging default and custom parameters. One remarks: if there is one custome parameter not listed in the default ones, the script will generate an error and quit.
+
+*Final remark*: right now it is mandatory to provide at least one parameter, otherwise the help text will be shown. 
+
+Hands on
+--------
+
+See `example/` directory
+
+To Do
+-----
+
+* Include the description in the help
+* Run with no custom values
