@@ -17,20 +17,20 @@ How to do that?
 
 I will detail what is included in `src/example1.R` (which is a runnable example)
 
-`default_args <- rbind(
-  cbind("name", "my_job_name", ".", "as.character"),
-  cbind("classification_type", "cases_vs_control", "cases_vs_control or cases_vs_cases", "as.character"),
-  cbind("resampling_times", "1", ".", "as.numeric"),
-  cbind("feature_range", "c(1:50)", ".", "evalParseText"),
-  cbind("n_feature_selection_from", "5", ".", "as.numeric"),
-  cbind("n_feature_selection_to", "110", ".", "as.numeric"),
-  cbind("n_feature_selection_by", "5", ".", "as.numeric"),
-  cbind("do_classification_task", "TRUE", ".", "as.logical"),
-  cbind("phenotype", "Autism", ".", "as.list"),
-  cbind("ncores", "1", ".", "as.numeric"),
-  cbind("init_directory", "/my/home/directory", ".", "as.character"),
-  cbind("output_dir", "/my/output/directory/", ".", "as.character")
-)`
+	default_args <- rbind(
+	  cbind("name", "my_job_name", ".", "as.character"),
+	  cbind("classification_type", "cases_vs_control", "cases_vs_control or cases_vs_cases", "as.character"),
+	  cbind("resampling_times", "1", ".", "as.numeric"),
+	  cbind("feature_range", "c(1:50)", ".", "evalParseText"),
+	  cbind("n_feature_selection_from", "5", ".", "as.numeric"),
+	  cbind("n_feature_selection_to", "110", ".", "as.numeric"),
+	  cbind("n_feature_selection_by", "5", ".", "as.numeric"),
+	  cbind("do_classification_task", "TRUE", ".", "as.logical"),
+	  cbind("phenotype", "Autism", ".", "as.list"),
+	  cbind("ncores", "1", ".", "as.numeric"),
+	  cbind("init_directory", "/my/home/directory", ".", "as.character"),
+	  cbind("output_dir", "/my/output/directory/", ".", "as.character")
+	)
 
 `default_args` is a data.frame with as many rows as parameters and 4 columns
 
