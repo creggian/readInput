@@ -1,8 +1,16 @@
-Provide and parse parameters for R scripts
-==========================================
+Parse parameters for R scripts
+==============================
 
-The goal is to easily parse parameters when launching R script using ''Rscript'' command
+The goal is to easily parse parameters when launching R script using `Rscript` command. Example:
 
-''Rscript myscript.R --arg1=param1 --arg2=param2''
+`Rscript myscript.R --arg1=param1 --arg2=param2`
 
-and provide some sort of flexibility in defining the parameters
+What to do
+----------
+
+* create a data.frame with default arguments (and little bit more)
+* merge default with custom parameters
+* retrieve the final values
+
+How to do that?
+---------------
