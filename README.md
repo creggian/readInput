@@ -1,7 +1,7 @@
 Parameter parser for R scripts
 ==============================
 
-The goal is to easily parse parameters and provide an "help" text message when launching R script using `Rscript` command. Example:
+I wanted to get rid of all hardcoded parameters in my script and at the same time have a friendly script that takes care of reading the parameters given as input from the outside environment (i.e. bash). Therefore I developed `readInput` function, which easily parse parameters and provide an "help" text message when launching R script using `Rscript` command, such as
 
 `Rscript myscript.R --arg1=param1 --arg2=param2`
 
@@ -17,10 +17,16 @@ There have been two main motivations for this script
 What to do
 ----------
 
+Inside R
 1. create a data.frame with default arguments (and little bit more)
 2. merge default with custom parameters
-3. retrieve the final values
-4. run your script with `Rscript` command
+3. retrieve the final values and run your code
+
+In your bash console
+* run your script with `Rscript` command
+
+Extra
+* combine `sbatch` and `Rscript` in **one-line**
 
 How to do that?
 ---------------
@@ -100,6 +106,8 @@ By the way the most effective advantage is using it in combination with Resource
 Ok, it's not one line for humans :) but it is for the machine. And it is easy to edit-copy-paste in your remote cluster and submit a new job
 
 **BONUS**: in this way it easy to create a for loops to launch job array, whenever the resource manager does not support it
+
+**REMARK**: run the example using `Rscript` command from your console. If you try to copy-paste and run the same code inside RStudio or in a R console, it will crash because of `commandArgs(TRUE)`.
 
 To Do
 -----
