@@ -5,12 +5,22 @@ The goal is to easily parse parameters and provide an "help" text message when l
 
 `Rscript myscript.R --arg1=param1 --arg2=param2`
 
+Why
+---
+
+There have been two main motivations for this script
+
+1. The need to easily define, read and parse parameters in R, given as input from the outside environment (i.e. from a bash script)
+2. Being more efficient with Resource Managers such as Slurm and TORQUE. Their documentations suggest to create a file bash which includes the demanded resources and the script to be run. However, the file will be read only when the submitted job (with `sbatch` or `qsub` commands) starts running, until that time it's not possible to submit a second time with different parameters. Here I wanted to find out a workaround to overcome this limitation.
+
+
 What to do
 ----------
 
 1. create a data.frame with default arguments (and little bit more)
 2. merge default with custom parameters
 3. retrieve the final values
+4. run your script with `Rscript` command
 
 How to do that?
 ---------------
@@ -49,10 +59,47 @@ For the preprocessing function you can use both built-in and user-defined functi
 
 *Final remark*: right now it is mandatory to provide at least one parameter, otherwise the help text will be shown. 
 
-Hands on
---------
+Example
+-------
 
-See `example/` directory
+Download the files, open a (bash) terminal and move to the `example` directory. Then run the following
+
+	Rscript example1.R
+	Rscript example1.R --name=my_new_name
+	Rscript example1.R --n_feature_selection_to=110astext=as.character
+	Rscript example1.R --phenotype=NULL=as.null
+
+and give a look at how the parameters have been read, parsed and preprocessed in the resulting list.
+
+By the way the most effective advantage is using it in combination with Resource Manager, in this example I'll use `sbatch`. The idea here is to provide a **one-line sbatch** command instead of a file
+
+	sbatch  --job-name=my_job_name \
+	        --output=my_job_name.out \
+		--nodes=1 \
+		--ntasks=1 \
+		--time=10:00:00 \
+		--mem=2000 \
+		<<EOF
+	#!bin/bash
+	module load R/3.0.2
+	Rscript /path/to/my/workdir/example1.R \
+	        --name="my_job_name" \
+		--resampling_times="1" \
+		--classification_type="cases_vs_control" \
+		--do_classification_task="TRUE" \
+		--n_feature_selection_from="5" \
+		--n_feature_selection_to="110" \
+		--n_feature_selection_by="5" \
+		--feature_range="c(241:29582)" \
+		--phenotype_list="Intellectual disability"=list_with_name \
+		--ncores="1" \
+		--init_directory="/path/to/my/workdir/RData" \
+		--output_dir="/path/to/my/workdir/output"
+	EOF
+
+Ok, it's not one line for humans :) but it is for the machine. And it is easy to edit-copy-paste in your remote cluster and submit a new job
+
+**BONUS**: in this way it easy to create a for loops to launch job array, whenever the resource manager does not support it
 
 To Do
 -----
