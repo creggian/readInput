@@ -18,6 +18,7 @@ What to do
 ----------
 
 Inside R
+
 1. create a data.frame with default arguments (and little bit more)
 2. merge default with custom parameters
 3. retrieve the final values and run your code
