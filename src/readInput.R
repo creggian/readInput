@@ -3,7 +3,10 @@ readInput <- function(default_args, args=commandArgs(TRUE), print.input=TRUE) {
   colnames(default_args) <- c("arg", "value", "description", "cast")
   
   default_args_string <- default_args
-  default_args_string$arg <- paste(rep("\t", 4), "--", default_args_string$arg, sep="")
+  default_args_string$arg <- paste(rep("\t", length(default_args_string$arg)),
+                                   "--",
+                                   default_args_string$arg,
+                                   sep="")
   
   if(length(args) < 1) {
     args <- c("--help")
